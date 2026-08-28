@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Motor de Precificação para E-commerce</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Chart.js CDN para criação do gráfico -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Motor de Precificação Inteligente</h1>
+      <p>Simule preços de venda com base na margem desejada e na concorrência de mercado.</p>
+    </header>
+
+    <main class="grid-container">
+      <!-- Formulário de Entrada -->
+      <section class="card form-section">
+        <h2>Dados do Produto</h2>
+        <form id="pricing-form">
+          <div class="form-group">
+            <label for="custo">Custo do Produto (R$):</label>
+            <input type="number" id="custo" step="0.01" min="0.01" placeholder="Ex: 50.00" required>
+          </div>
+
+          <div class="form-group">
+            <label for="taxa">Taxa do Marketplace (%):</label>
+            <input type="number" id="taxa" step="0.1" min="0" max="100" placeholder="Ex: 12" required>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="margem_desejada">Margem Desejada (%):</label>
+              <input type="number" id="margem_desejada" step="0.1" min="0" max="100" placeholder="Ex: 20" required>
+            </div>
+            <div class="form-group">
+              <label for="margem_minima">Margem Mínima (%):</label>
+              <input type="number" id="margem_minima" step="0.1" min="0" max="100" placeholder="Ex: 10" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="concorrentes">Preços Concorrentes (separados por vírgula):</label>
+            <input type="text" id="concorrentes" placeholder="Ex: 80, 82, 79, 85, 150" required>
+            <small>Outliers serão filtrados automaticamente pelo algoritmo IQR.</small>
+          </div>
+
+          <button type="submit" id="btn-calcular">Calcular Precificação</button>
+        </form>
+      </section>
+
+      <!-- Dashboard de Resultados -->
+      <section class="card result-section" id="results-panel" style="display: none;">
+        <h2>Resultado da Análise</h2>
+        
+        <div class="badge" id="status-badge">---</div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <span>Preço Sugerido</span>
+            <strong id="kpi-preco">R$ 0,00</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Margem Efetiva</span>
+            <strong id="kpi-margem">0%</strong>
+          </div>
+          <div class="kpi-card">
+            <span>Média Mercado (Ajustada)</span>
+            <strong id="kpi-mercado">R$ 0,00</strong>
+          </div>
+        </div>
+
+        <div id="alertas-container" class="alertas-box"></div>
+
+        <div class="chart-box">
+          <canvas id="pricingChart"></canvas>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
