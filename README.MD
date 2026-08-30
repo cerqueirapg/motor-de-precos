@@ -38,56 +38,29 @@ motor-de-precos/
 │   └── script.js            # Integração assíncrona com a API
 └── README.md
 
-Como Executar o Projeto Localmente
-Pré-requisitos
-Python instalado (versão 3.10 ou superior)
+```
+## ⚙️ Como Executar o Projeto Localmente
+### Pré-requisitos
+- Python instalado (versão 3.10 ou superior)
+- Extensão Live Server no VS Code (ou qualquer servidor HTTP estático)
 
-Extensão Live Server no VS Code (ou qualquer servidor HTTP estático)
-
-1. Clonar o repositório
-Como Executar o Projeto Localmente
-Pré-requisitos
-Python instalado (versão 3.10 ou superior)
-
-Extensão Live Server no VS Code (ou qualquer servidor HTTP estático)
-
-1. Clonar o repositório
-
-git clone [https://github.com/seu-usuario/motor-de-precos.git](https://github.com/seu-usuario/motor-de-precos.git)
+1. **Clonar o repositório:**
+```bash
+git clone https://github.com/seu-usuario/motor-de-precos.git
 cd motor-de-precos
-
-2. Configurar o Ambiente Virtual e Dependências
-
+```
+2. **Configurar o Ambiente Virtual e Dependências**
+```powershell
 python -m venv venv
-
-# No Windows PowerShell:
 .\venv\Scripts\Activate.ps1
-
-# Instalar dependências:
 python -m pip install fastapi uvicorn pydantic pytest
-
-3. Iniciar o Backend (FastAPI)
-
+```
+3. **Iniciar o Backend (FastAPI)**
+```powershell
 python -m uvicorn app.main:app --reload
+```
+- A API estará acessível em http://127.0.0.1:8000. A documentação Swagger pode ser acessada em http://127.0.0.1:8000/docs.
 
-A API estará acessível em http://127.0.0.1:8000. A documentação Swagger pode ser acessada em http://127.0.0.1:8000/docs.
-
-4. Iniciar o Frontend
-Abra a pasta frontend/index.html com o Live Server no VS Code para navegar na interface gráfica e realizar as simulações.
+4. **Iniciar o Frontend**
+- Abra a pasta frontend/index.html com o Live Server no VS Code para navegar na interface gráfica e realizar as simulações.
 ---
-
-### Passo 2: Criar o arquivo `.gitignore`
-
-Para garantir que a pasta `venv` (que contém gigabytes de arquivos do ambiente) **não seja enviada para o GitHub**, crie um arquivo chamado **`.gitignore`** na raiz do projeto e insira as linhas:
-
-```text
-# Ambiente virtual
-venv/
-.venv/
-
-# Arquivos temporários do Python
-__pycache__/
-*.pyc
-
-# Configurações do VS Code
-.vscode/
